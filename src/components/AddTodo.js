@@ -6,21 +6,25 @@ export class AddTodo extends Component {
       title: ''
   }
 
-  onChange = (e) => {
-      this.setState( {title: e.target.value} ) 
-  };
+
 
   onSubmit = (e) => {
       e.preventDefault();
       this.props.addTodo(this.state.title);
-      this.setState({ title: '' });
+      
+      document.getElementById("addItemForm").reset();
+
+
+      
   }
+  onChange = (e) => this.setState ({ [e.target.name]: e.target.value });
+    //this.setState( {title: e.target.value} )
  
 
   render() {
     return (
       <div className="itemRow">
-        <form onSubmit={ this.onSubmit } style={{display: 'flex'}}>
+        <form id="addItemForm" onSubmit={ this.onSubmit } style={{display: 'flex'}}>
             <input 
                 type="text" 
                 name="title" 
